@@ -1,0 +1,131 @@
+body {
+    width: 420px;
+    color: gray;
+    padding: 30px;
+}
+
+.header {
+    text-align: center;
+    margin-top: -5px;
+    border-bottom: 0;
+}
+
+.message {
+    padding-top: 15px;
+    font-size: 18px;
+}
+
+.btn-info {
+    width: 100%;
+    background-color: #6983E1;
+    border-color: #6983E1;
+    border-radius: 0;
+}
+
+input, #email, #password {
+    border-radius: 0;
+}
+input:focus{
+    border: 2px solid #bdc3c7;
+}
+
+#status-display {
+    text-align: center;
+    font-size: 12px;
+}
+
+.heart-shape {
+    margin: 0 8px;
+    display: inline-block;
+    /*position: relative;*/
+    width: 14px;
+    height: 14px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: rgba(250, 184, 66, 1);
+}
+
+.heart-shape:before,
+.heart-shape:after {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    content: '';
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background-color: rgba(250, 184, 66, 1);
+}
+
+.heart-shape:before {
+    bottom: 0px;
+    left: -7px;
+}
+
+.heart-shape:after {
+    top: -7px;
+    right: 0px;
+}
+
+.forgotLink {
+    font-size: 15px;
+    color: gray;
+    border-bottom: 1px solid gray
+}
+
+.signupLink {
+    font-size: 15px;
+    color: #6983E1;
+    border-bottom: 1px solid #6983E1
+}
+
+#saveSuccess {
+    display: none;
+    color: gray;
+    text-align: center;
+}
+
+#saveSuccess h2 {
+    color: #6983E1;
+}
+
+#saveSuccess a {
+    color: gray;
+    border-bottom: 1px solid gray;
+    font-size: 20px;
+}
+.icon{
+    position: absolute;
+    top: 78px;
+    left: 50%;
+}
+.icon img{
+    width: 20px;
+    height: 20px;
+}
+
+.saveBtn{
+    width:100px;
+    border-radius: 35px;
+}
+.siteName{
+    display: inline-flex;
+    max-width: 200px;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    color: gray;
+}
+.searchForm{
+    margin-top: 35px;
+}
+
+.btn-default, .searchIcon{
+    background-color: white;
+
+}
