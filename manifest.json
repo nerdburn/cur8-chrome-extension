@@ -1,13 +1,12 @@
 {
-  "name": "Cur8",
+  "name": "Cur8 Dev",
   "description": "Save & search only your favourite sites.",
   "version": "1.1.1",
   "manifest_version": 2,
-  "homepage_url": "http://cur8.io/",
+  "homepage_url": "http://cur8.io",
   "background": {
     "scripts": [
-      "lib/jquery-2.1.1.min.js",
-      "background.js"
+      "lib/jquery-2.1.1.min.js"
     ]
   },
   "permissions": [
@@ -16,8 +15,8 @@
     "tabs"
   ],
   "icons": {
-    "128": "logo.png",
-    "16": "logo.png"
+    "128": "dev-logo.png",
+    "16": "dev-logo.png"
   },
   "browser_action": {
     "default_icon": "logo.png",
