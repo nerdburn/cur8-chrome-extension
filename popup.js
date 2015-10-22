@@ -2,7 +2,7 @@
 var t = chrome.tabs;
 
 // develop mode
-var develop = true;
+var develop = false;
 var hostname = (develop)? 'localhost:3000' : 'cur8.io';
 
 var siteName = $('.site-name');
