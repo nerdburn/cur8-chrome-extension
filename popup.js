@@ -1,15 +1,16 @@
 // chrome apis
 var t = chrome.tabs;
+var activeTab = false; // load on page load
 
 // develop mode
 var develop = false;
-var hostname = (develop)? 'localhost:3000' : 'cur8.io';
+var hostname = (develop)? '6ea70105.ngrok.io' : 'cur8.io';
 
 var siteName = $('.site-name');
 var saveBtn = $('.save-btn');
 var searchInput = $('.srch-term');
 
-//p age elaments
+//page elaments
 var addForm = $(".add-site"),
     saveAddBtn = $("#submitSave"),
     loginForm = $(".log-in"),
@@ -53,38 +54,24 @@ function queryWord() {
 
 // on page load - get current tab
 t.query({ currentWindow: true, active: true }, function(tabs) {
-  var tab = tabs[0];
-  if(!validUrl(tab.url)) {
-    console.log('This page cannot be saved.');
+  activeTab = tabs[0];
+
+  //localStorage.removeItem('token');
+
+  // check if logged in
+  if(localStorage.token) {
+
+    // hide log in form if logged in
+    loginForm.hide();
+    console.log('is logged in');
+
+    // show the add form
+    showAddForm(activeTab);
   } else {
-    curDomain = getDomain(tab.url);
-    curUrl = tab.url;
-    
-    //localStorage.removeItem('token');
-    
-    // check if logged in
-    if(localStorage.token) {
-      
-      // hide log in form if logged in
-      loginForm.hide();
-      console.log('is logged in');
-      
-      // check if current url is already saved
-      if(isInLocalStorage('savedSites', curDomain)) {
-        console.log('domain has been saved');
-        siteName.text('Site ' + curDomain + ' is already saved.');
-        saveBtn.hide();
-      } else {
-        siteName.text(curDomain);
-        saveBtn.show();
-      }
-      
-      addForm.show();
-      searchInput.focus();
-    } else {
-      addForm.hide();
-      loginForm.show();
-    }
+
+    // show login form
+    addForm.hide();
+    loginForm.show();
   }
 });
 
@@ -106,7 +93,7 @@ function addSite() {
   ajaxCall(url, params, 'POST', 'json', function(data) {
     if(data && data.message == 'Saved!') {
       saveArrayInLocalStorage('savedSites', curDomain);
-      siteName.text('Site ' + curDomain + ' saved!');
+      siteName.text('This site is now saved!');
       saveBtn.hide();
     } else {
       siteName.text('Error saving...');
@@ -130,10 +117,44 @@ function logIn() {
       console.log('token found: ', data.loginToken);
       localStorage.token = data.loginToken;
       localStorage.uid = data.userId;
-      loginForm.hide();
-      addForm.show();
+
+      // show add form
+      if(activeTab) {
+        loginForm.hide();
+        showAddForm(activeTab);
+      } else {
+        console.log('no active tab found');
+      }
     }
   }, handleAjaxError);
+}
+
+function showSavedUrlMessageOrSaveButton(curDomain) {
+  // check if current url is already saved
+  if(isInLocalStorage('savedSites', curDomain)) {
+    console.log('domain has been saved');
+    siteName.text('This site has already been saved.');
+    saveBtn.hide();
+  } else {
+    siteName.text(curDomain);
+    saveBtn.show();
+  }
+}
+
+function showAddForm(tab) {
+  // check if current url is able to be saved
+  if(validUrl(tab.url)) {
+    curDomain = getDomain(tab.url);
+    curUrl = tab.url;
+    showSavedUrlMessageOrSaveButton(curDomain);
+  } else {
+    siteName.text('Invalid domain.');
+    saveBtn.hide();
+  }
+
+  // show add form
+  addForm.show();
+  searchInput.focus();
 }
 
 function getEmailAndPassword() {

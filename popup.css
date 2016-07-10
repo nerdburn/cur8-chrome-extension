@@ -77,7 +77,7 @@ a, button, input {
 }
 .icon-hr {
   text-align: center;
-  border-top: 1px solid #e5e5e5;  
+  border-top: 1px solid #e5e5e5;
 }
 .icon-hr img {
   width: 20px;
@@ -135,6 +135,11 @@ a, button, input {
 .row.submit,
 .row.submit-links {
   padding-top: 10px;
+  font-size: 14px;
+}
+
+.row.submit-links.extra-pad {
+  padding-top: 25px;
 }
 
 .add-site-form {
@@ -204,12 +209,11 @@ input:focus {
 }
 
 /*
-.header, 
-.sign-up, 
+.header,
+.sign-up,
 .log-in,
 .add-site,
 .row {
   border: 1px solid red;
 }
 */
-
