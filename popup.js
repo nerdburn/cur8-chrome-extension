@@ -36,7 +36,7 @@ function queryWord() {
   var query = searchInput.val().trim();
   if(query != '') {
     ajaxCall(
-      'http://'+hostname+'/api/search/' + localStorage.token, { terms: query }, 'POST', 'json', function(data) {
+      'https://'+hostname+'/api/search/' + localStorage.token, { terms: query }, 'POST', 'json', function(data) {
         if(data && data.search_url) {
           window.open(data.search_url);
         } else {
@@ -86,9 +86,9 @@ function getDomain(url) {
   }
 }
 
-// POST the data to the server using XMLHttpRequest
+// POST the data to the server using XMLhttpsRequest
 function addSite() {
-  var url = 'http://'+hostname+'/api/' + localStorage.token;
+  var url = 'https://'+hostname+'/api/' + localStorage.token;
   var params = { url: curUrl, uid: localStorage.uid };
   ajaxCall(url, params, 'POST', 'json', function(data) {
     if(data && data.message == 'Saved!') {
@@ -106,9 +106,9 @@ $('form.log-in').submit(function(){
   return false;
 });
 
-// POST the data to the server using XMLHttpRequest
+// POST the data to the server using XMLhttpsRequest
 function logIn() {
-  var url = 'http://'+hostname+'/api/login';
+  var url = 'https://'+hostname+'/api/login';
   var params = getEmailAndPassword();
   console.log('params: ', params);
   ajaxCall(url, params, 'POST', 'json', function(data) {
