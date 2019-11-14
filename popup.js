@@ -4,7 +4,7 @@ var activeTab = false; // load on page load
 
 // develop mode
 var develop = false;
-var hostname = (develop)? '6ea70105.ngrok.io' : 'cur8.io';
+var hostname = (develop)? 'localhost:3000' : 'cur8.io';
 
 var siteName = $('.site-name');
 var saveBtn = $('.save-btn');
