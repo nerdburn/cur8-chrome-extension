@@ -4,6 +4,14 @@
 
 // make ajax call, in chrome, is same as jquery ajax
 function ajaxCall(url, data, type, dataType, successCallback, errorCallback) {
+/*
+  var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+  xmlhttp.open(type, url);
+  xmlhttp.setRequestHeader("Content-Type", "application/json");
+  xmlhttp.addEventListener("loadend", successCallback);
+  xmlhttp.addEventListener("error", errorCallback);
+  xmlhttp.send(JSON.stringify(data));
+*/
   $.ajax({
     url: url,
     data: data,
