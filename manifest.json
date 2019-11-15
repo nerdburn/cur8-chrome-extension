@@ -3,14 +3,16 @@
   "description": "Save & search only your favourite sites.",
   "version": "1.1.5",
   "manifest_version": 2,
-  "homepage_url": "http://cur8.io",
+  "homepage_url": "https://cur8.io",
   "background": {
     "scripts": [
-      "lib/jquery-2.1.1.min.js"
-    ]
+      "lib/jquery-2.1.1.min.js",
+      "background.js"
+    ],
+    "persistent": false
   },
   "permissions": [
-    "http://cur8.io/*",
+    "https://cur8.io/*",
     "storage",
     "tabs"
   ],

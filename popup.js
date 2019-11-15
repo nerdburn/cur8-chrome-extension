@@ -4,13 +4,14 @@ var activeTab = false; // load on page load
 
 // develop mode
 var develop = false;
-var hostname = (develop)? 'localhost:3000' : 'cur8.io';
+var hostname = (develop)? 'localhost:3000' : 'www.cur8.io';
+var protocol = (develop)? 'http://' : 'https://';
 
 var siteName = $('.site-name');
 var saveBtn = $('.save-btn');
 var searchInput = $('.srch-term');
 
-//page elaments
+//page elements
 var addForm = $(".add-site"),
     saveAddBtn = $("#submitSave"),
     loginForm = $(".log-in"),
@@ -36,7 +37,7 @@ function queryWord() {
   var query = searchInput.val().trim();
   if(query != '') {
     ajaxCall(
-      'https://'+hostname+'/api/search/' + localStorage.token, { terms: query }, 'POST', 'json', function(data) {
+      protocol+hostname+'/api/search/' + localStorage.token, { terms: query }, 'POST', 'json', function(data) {
         if(data && data.search_url) {
           window.open(data.search_url);
         } else {
@@ -88,7 +89,7 @@ function getDomain(url) {
 
 // POST the data to the server using XMLhttpsRequest
 function addSite() {
-  var url = 'https://'+hostname+'/api/' + localStorage.token;
+  var url = protocol+hostname+'/api/' + localStorage.token;
   var params = { url: curUrl, uid: localStorage.uid };
   ajaxCall(url, params, 'POST', 'json', function(data) {
     if(data && data.message == 'Saved!') {
@@ -106,9 +107,23 @@ $('form.log-in').submit(function(){
   return false;
 });
 
+/*
 // POST the data to the server using XMLhttpsRequest
 function logIn() {
   var url = 'https://'+hostname+'/api/login';
+  var params = getEmailAndPassword();
+  console.log('params: ', params);
+  var message = {
+    body: "message body"
+  }
+  chrome.runtime.sendMessage(message);
+}
+*/
+
+
+// POST the data to the server using XMLhttpsRequest
+function logIn() {
+  var url = protocol+hostname+'/api/login';
   var params = getEmailAndPassword();
   console.log('params: ', params);
   ajaxCall(url, params, 'POST', 'json', function(data) {
@@ -128,6 +143,7 @@ function logIn() {
     }
   }, handleAjaxError);
 }
+
 
 function showSavedUrlMessageOrSaveButton(curDomain) {
   // check if current url is already saved
